@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getUserThunk } from "./store/reducers/player";
 
 function App() {
+  const dispatch = useDispatch();
   const [count, setCount] = useState(0);
+
+  const player = useSelector((state) => state.player);
+  console.log(player);
+
+  useEffect(() => {
+    async function getPlayer() {
+      dispatch(getUserThunk("d05de666-ec44-4c90-82b2-df6bd51d1e3f"));
+    }
+    getPlayer();
+  }, []);
 
   return (
     <div className="App">

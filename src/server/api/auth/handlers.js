@@ -35,7 +35,12 @@ async function createUser(req, res, next) {
       process.env.JWT_SECRET
     );
 
-    res.status(201).send({ user, token });
+    res
+      .status(201)
+      .send({
+        user: { id: user.id, email: user.email, isAdmin: user.isAdmin },
+        token,
+      });
   } catch (error) {
     console.error(error);
     next(error);
@@ -43,7 +48,7 @@ async function createUser(req, res, next) {
 }
 
 async function login(req, res, next) {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     const user = await prisma.user.findFirst({
@@ -65,7 +70,7 @@ async function login(req, res, next) {
     }
 
     const token = jwt.sign(
-      { userId: user.id, username: user.username },
+      { userId: user.id, email: user.email },
       process.env.JWT_SECRET
     );
     res.status(200).send({ user, token });

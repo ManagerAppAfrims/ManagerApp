@@ -11,6 +11,36 @@ datasource db {
 }
 
 model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  password  String
+  isAdmin   Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  UserTeam  UserTeam[]
+}
+
+model UserTeam {
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+  teamId String
+  Team   Team   @relation(fields: [teamId], references: [id])
+
+  @@id([userId, teamId])
+}
+
+model Team {
+  id       String     @id @default(uuid())
+  name     String
+  UserTeam UserTeam[]
+  Games    Game[]
+}
+
+model Game {
   id       String @id @default(uuid())
-  username String
+  date     String
+  time     String
+  location String
+  teamId   String
+  opponent String
+  Team     Team   @relation(fields: [teamId], references: [id])
 }

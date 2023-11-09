@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const prisma = require("../../client");
 
 async function createUser(req, res, next) {
-  const { username, password, email } = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
   const SALT_ROUNDS = 5;
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
@@ -16,7 +16,7 @@ async function createUser(req, res, next) {
     });
 
     if (isDuplicate) {
-      res.status(400).send({
+      res.send({
         message: "Oops... An account is already associated with this email!",
       });
       return;
@@ -24,21 +24,19 @@ async function createUser(req, res, next) {
 
     const user = await prisma.user.create({
       data: {
-        username,
         email,
         password: hashedPassword,
+        firstName,
+        lastName,
       },
     });
 
     const token = jwt.sign(
-      { userId: user.id, username },
+      { userId: user.id, email: user.email },
       process.env.JWT_SECRET
     );
 
-    res.status(201).send({
-      user: { id: user.id, email: user.email, isAdmin: user.isAdmin },
-      token,
-    });
+    res.status(201).send({ user, token });
   } catch (error) {
     console.error(error);
     next(error);
@@ -56,14 +54,14 @@ async function login(req, res, next) {
     });
 
     if (!user) {
-      res.status(404).send({ message: "Incorrect login credentials!" });
+      res.send({ message: "Incorrect login credentials!" });
       return;
     }
 
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-      res.status(404).send({ message: "Incorrect login credentials!" });
+      res.send({ message: "Incorrect login credentials!" });
       return;
     }
 
@@ -90,7 +88,13 @@ async function findUserByToken(req, res, next) {
     if (!user) {
       throw "oh no!";
     }
-    res.status(200).send(user);
+    res.status(200).send({
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      isAdmin: user.isAdmin,
+    });
   } catch (error) {
     console.error(error);
     next(error);

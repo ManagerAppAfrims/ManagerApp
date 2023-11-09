@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { loginUserThunk } from "../store/reducers/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
+  const regError = useSelector((state) => state.auth.error);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,9 +34,12 @@ function Login() {
           className="bg-black py-4 w-full rounded-full text-white my-2 text-xl shadow-lg flex justify-center items-center"
           onClick={handleLogin}
         >
-          <Link to="/landing">
-            <button>Login</button>
-          </Link>
+          <button>Login</button>
+        </div>
+        <div className="text-center">
+          {regError && (
+            <h2 className="text-red-500 text-xl my-2">{regError}</h2>
+          )}
         </div>
         <span className="text-lg">
           Don't Have An Account?

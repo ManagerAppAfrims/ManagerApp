@@ -1,13 +1,21 @@
 import axios from "axios";
+import history from "../../history";
 
 const BASE_URL = import.meta.env.VITE_URL || "http://localhost:3000";
 
 const LOGIN = "LOGIN";
+const REGISTER = "REGISTER";
 const LOGOUT = "LOGOUT";
 const GETME = "GETME";
+const ERROR = "ERROR";
 
 const login = (userObj) => ({
   type: LOGIN,
+  payload: userObj,
+});
+
+const register = (userObj) => ({
+  type: REGISTER,
   payload: userObj,
 });
 
@@ -18,6 +26,11 @@ const getMe = (userObj) => ({
 
 const logout = () => ({
   type: LOGOUT,
+});
+
+const error = (errorMsg) => ({
+  type: ERROR,
+  payload: errorMsg,
 });
 
 export const loginUserThunk =
@@ -31,7 +44,41 @@ export const loginUserThunk =
 
       window.sessionStorage.setItem("TOKEN", userObj.token);
 
-      return dispatch(login(userObj.user));
+      if (!userObj.message) {
+        dispatch(login(userObj.user));
+        history.push("/home");
+      } else {
+        console.error(error);
+        dispatch(error(userObj.message));
+      }
+    } catch (error) {
+      console.error(error);
+      dispatch(error("Incorrect email or password"));
+    }
+  };
+
+export const registerUserThunk =
+  ({ email, password, firstName, lastName }) =>
+  async (dispatch) => {
+    try {
+      const { data: userObj } = await axios.post(`${BASE_URL}/auth/register`, {
+        email,
+        password,
+        firstName,
+        lastName,
+      });
+
+      window.sessionStorage.setItem("TOKEN", userObj.token);
+
+      console.log(userObj, "userObj");
+
+      if (!userObj.message) {
+        dispatch(register(userObj.user));
+        history.push("/home");
+      } else {
+        console.error(error);
+        dispatch(error(userObj.message));
+      }
     } catch (error) {
       console.error(error);
     }
@@ -45,27 +92,32 @@ export const meThunk = () => async (dispatch) => {
         authorization: token,
       },
     });
-    return dispatch(getMe(data));
+    dispatch(getMe(data));
   }
 };
 
 export const logoutThunk = () => async (dispatch) => {
   window.sessionStorage.removeItem("TOKEN");
-  return dispatch(logout());
+  dispatch(logout());
 };
 
 const initialState = {
   me: {},
+  error: "",
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      return { me: action.payload };
+      return { ...state, me: action.payload };
+    case REGISTER:
+      return { ...state, me: action.payload };
     case GETME:
-      return { me: action.payload };
+      return { ...state, me: action.payload };
+    case ERROR:
+      return { ...state, error: action.payload };
     case LOGOUT:
-      return { me: {} };
+      return { ...state, me: {} };
     default:
       return state;
   }

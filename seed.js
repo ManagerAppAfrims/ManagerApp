@@ -5,11 +5,25 @@ const users = [
   {
     email: "nievescs20@gmail.com",
     password: "123",
+    firstName: "Chris",
+    lastName: "Nieves",
     isAdmin: true,
   },
 ];
 
+const teams = [
+  {
+    name: "Silence of the Llamas",
+  },
+  {
+    name: "Double Brace",
+  },
+];
+
 async function seed() {
+  await prisma.user.deleteMany();
+  await prisma.team.deleteMany();
+
   const SALT_ROUNDS = 5;
   await Promise.all(
     users.map(async (user) => {
@@ -20,6 +34,13 @@ async function seed() {
           password: hashedPassword,
           isAdmin: user.isAdmin,
         },
+      });
+    })
+  );
+  await Promise.all(
+    teams.map(async (team) => {
+      return prisma.team.create({
+        data: team,
       });
     })
   );

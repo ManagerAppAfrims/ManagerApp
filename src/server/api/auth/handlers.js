@@ -35,12 +35,10 @@ async function createUser(req, res, next) {
       process.env.JWT_SECRET
     );
 
-    res
-      .status(201)
-      .send({
-        user: { id: user.id, email: user.email, isAdmin: user.isAdmin },
-        token,
-      });
+    res.status(201).send({
+      user: { id: user.id, email: user.email, isAdmin: user.isAdmin },
+      token,
+    });
   } catch (error) {
     console.error(error);
     next(error);
@@ -80,4 +78,23 @@ async function login(req, res, next) {
   }
 }
 
-module.exports = { createUser, login };
+async function findUserByToken(req, res, next) {
+  const token = req.headers.authorization;
+  try {
+    const { userId } = await jwt.verify(token, process.env.JWT_SECRET);
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    if (!user) {
+      throw "oh no!";
+    }
+    res.status(200).send(user);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+module.exports = { createUser, login, findUserByToken };

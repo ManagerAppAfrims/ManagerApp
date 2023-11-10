@@ -2,12 +2,17 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import playersReducer from "./reducers/players";
+import authReducer from "./reducers/auth";
+import teamsReducer from "./reducers/teams";
 import playerReducer from "./reducers/player";
-import authReducer from "./reducers/auth.js";
 
 const reducer = combineReducers({
   player: playerReducer,
   auth: authReducer,
+  players: playersReducer,
+  teams: teamsReducer,
+  player: playerReducer,
 });
 
 const middleware = composeWithDevTools(

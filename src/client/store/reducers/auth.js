@@ -70,8 +70,6 @@ export const registerUserThunk =
 
       window.sessionStorage.setItem("TOKEN", userObj.token);
 
-      console.log(userObj, "userObj");
-
       if (!userObj.message) {
         dispatch(register(userObj.user));
         history.push("/home");

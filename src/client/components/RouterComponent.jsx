@@ -6,6 +6,7 @@ import Register from "./Register";
 import Home from "./Home";
 import { meThunk } from "../store/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
+import AdminDash from "./AdminDash";
 
 function RouterComponent() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function RouterComponent() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/admin" element={<Home />} />
+        <Route path="/admin" element={<AdminDash />} />
       </Routes>
     );
   }

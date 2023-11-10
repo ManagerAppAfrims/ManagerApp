@@ -1,35 +1,43 @@
 import axios from "axios";
 
 const GET_PLAYER = "GET_PLAYER";
-// const GET_USER = "GET_USER";
+const GET_TEAM_INFO = "GET_TEAM_INFO";
 
 const getPlayer = (player) => ({
   type: GET_PLAYER,
   payload: player,
 });
 
-// const getUser = (user) => ({
-//   type: GET_USER,
-//   user,
-// });
+const getTeamInfo = (teams) => ({
+  type: GET_TEAM_INFO,
+  payload: teams,
+});
 
 export const getUserThunk = (playerId) => async (dispatch) => {
   try {
     const { data: player } = await axios.get(`/api/player/${playerId}`);
-    return dispatch(getPlayer(player.player));
+    dispatch(getPlayer(player));
   } catch (error) {
     console.error(error);
   }
 };
 
-// export const getUserThunk = (id) => async (dispatch) => {
-//   try {
-//     const { data: user } = await axios.get(`/api/users/${id}`);
-//     return dispatch(getUser(user));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+export const createUserThunk = (playerInfo) => async (dispatch) => {
+  try {
+    const { data: player } = await axios.post(`/auth/register`, playerInfo);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getTeamInfoThunk = (playerId) => async (dispatch) => {
+  try {
+    const { data: teams } = await axios.get(`/api/player/teams/${playerId}`);
+    dispatch(getTeamInfo(teams));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const initialState = {
   playerInfo: {},
@@ -40,8 +48,8 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_PLAYER:
       return { ...state, playerInfo: action.payload };
-    // case GET_USER:
-    //   return { ...state, singleUser: action.user };
+    case GET_TEAM_INFO:
+      return { ...state, playerTeams: action.payload };
     default:
       return state;
   }

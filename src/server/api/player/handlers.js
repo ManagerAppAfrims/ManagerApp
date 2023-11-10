@@ -9,7 +9,7 @@ async function getPlayerInfo(req, res, next) {
       },
     });
 
-    res.status(200).send({ player });
+    res.status(200).send(player);
   } catch (error) {
     console.error(error);
     next();
@@ -23,20 +23,36 @@ async function getPlayerTeamInfo(req, res, next) {
       where: {
         userId: playerId,
       },
-
       include: {
         Team: {
           include: {
-            Games: true,
+            Games: {
+              orderBy: {
+                time: "asc",
+              },
+              orderBy: {
+                date: "asc",
+              },
+            },
           },
         },
       },
     });
-    res.status(200).send({ teams });
+    res.status(200).send(teams);
   } catch (error) {
     console.error(error);
     next();
   }
 }
 
-module.exports = { getPlayerInfo, getPlayerTeamInfo };
+async function getAllPlayers(req, res, next) {
+  try {
+    const players = await prisma.user.findMany();
+    res.status(200).send(players);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+module.exports = { getPlayerInfo, getPlayerTeamInfo, getAllPlayers };

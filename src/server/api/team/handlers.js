@@ -15,4 +15,14 @@ async function createTeam(req, res, next) {
   }
 }
 
-module.exports = { createTeam };
+async function getAllTeams(req, res, next) {
+  try {
+    const teams = await prisma.team.findMany();
+    res.status(200).send(teams);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+module.exports = { createTeam, getAllTeams };

@@ -1,8 +1,11 @@
-const express = require("express");
-const { getPlayerInfo, getPlayerTeamInfo } = require("./handlers");
+const router = require("express").Router();
+const {
+  getPlayerInfo,
+  getPlayerTeamInfo,
+  getAllPlayers,
+} = require("./handlers");
 
-const router = express.Router();
-
+router.get("/all", getAllPlayers);
 router.get("/:playerId", getPlayerInfo);
 router.get("/teams/:playerId", getPlayerTeamInfo);
 

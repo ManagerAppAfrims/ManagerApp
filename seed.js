@@ -9,6 +9,41 @@ const users = [
     lastName: "Nieves",
     isAdmin: true,
   },
+  {
+    email: "test1@gmail.com",
+    password: "123",
+    firstName: "James",
+    lastName: "Smith",
+    isAdmin: false,
+  },
+  {
+    email: "test2@gmail.com",
+    password: "123",
+    firstName: "Robert",
+    lastName: "Jones",
+    isAdmin: false,
+  },
+  {
+    email: "test3@gmail.com",
+    password: "123",
+    firstName: "John",
+    lastName: "Johnson",
+    isAdmin: false,
+  },
+  {
+    email: "test4@gmail.com",
+    password: "123",
+    firstName: "Michael",
+    lastName: "Garcia",
+    isAdmin: false,
+  },
+  {
+    email: "test5@gmail.com",
+    password: "123",
+    firstName: "David",
+    lastName: "Williams",
+    isAdmin: false,
+  },
 ];
 
 const teams = [
@@ -21,8 +56,10 @@ const teams = [
 ];
 
 async function seed() {
-  await prisma.user.deleteMany();
-  await prisma.team.deleteMany();
+  await prisma.userTeam
+    .deleteMany()
+    .then(async () => await prisma.user.deleteMany())
+    .then(async () => await prisma.team.deleteMany());
 
   const SALT_ROUNDS = 5;
   await Promise.all(
@@ -33,6 +70,8 @@ async function seed() {
           email: user.email,
           password: hashedPassword,
           isAdmin: user.isAdmin,
+          firstName: user.firstName,
+          lastName: user.lastName,
         },
       });
     })
@@ -40,7 +79,9 @@ async function seed() {
   await Promise.all(
     teams.map(async (team) => {
       return prisma.team.create({
-        data: team,
+        data: {
+          name: team.name,
+        },
       });
     })
   );

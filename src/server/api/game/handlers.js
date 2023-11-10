@@ -4,6 +4,18 @@ async function createGame(req, res, next) {
   const { date, time, location, teamId, opponent } = req.body;
 
   try {
+    const duplicate = await prisma.game.findFirst({
+      where: {
+        date,
+        time,
+        teamId,
+      },
+    });
+
+    if (duplicate) {
+      throw "Game Already In Schedule";
+    }
+
     const game = await prisma.game.create({
       data: {
         date,

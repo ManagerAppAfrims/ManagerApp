@@ -1,10 +1,8 @@
-const express = require("express");
+const router = require("express").Router();
 const gameRouter = require("./game/index");
 const playerRouter = require("./player/index");
 const teamRouter = require("./team/index");
 const userTeamRouter = require("./userTeam/index");
-
-const router = express.Router();
 
 router.use("/game", gameRouter);
 router.use("/player", playerRouter);

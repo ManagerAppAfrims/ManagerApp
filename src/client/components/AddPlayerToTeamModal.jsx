@@ -30,7 +30,11 @@ function AddPlayerToTeamModal({ showAddPlayerToTeam, setShowAddPlayerToTeam }) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto flex flex-col gap-4">
                   {players.map((player) => (
-                    <AddPlayerOption player={player} teams={teams} />
+                    <AddPlayerOption
+                      player={player}
+                      teams={teams}
+                      key={player.id}
+                    />
                   ))}
                 </div>
                 {/*footer*/}

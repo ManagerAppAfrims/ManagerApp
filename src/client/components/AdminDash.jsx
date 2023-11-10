@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import CreatePlayerModal from "./CreatePlayerModal";
 import AddPlayerToTeamModal from "./AddPlayerToTeamModal";
 import AddGameModal from "./AddGameModal";
@@ -12,7 +12,7 @@ function AdminDash() {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
 
   return (
-    <div className="flex flex-col items-center" r>
+    <div className="flex flex-col items-center">
       <div className="w-4/5 flex flex-col items-center">
         <h1 className="text-2xl mb-8 mt-4">Admin Dashboard</h1>
         <div className="flex flex-col items-center gap-4 w-full">

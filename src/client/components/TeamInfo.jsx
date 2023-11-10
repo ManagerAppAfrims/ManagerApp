@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { getTeamInfoThunk } from "../store/reducers/player";
-import { convertMilitaryTime } from "../utils";
 import ScheduledGame from "./ScheduledGame";
 
 function TeamInfo() {

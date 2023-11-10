@@ -34,13 +34,17 @@ function AddPlayerOption({ player, teams }) {
             Select Team
           </option>
           {teams.map((team) => (
-            <option value={`${team.id}_${team.name}`}>{team.name}</option>
+            <option value={`${team.id}_${team.name}`} key={team.id}>
+              {team.name}
+            </option>
           ))}
         </select>
         <button
           onClick={() =>
             handleAssignTeam(player.id, selectedTeam, player.firstName)
           }
+          disabled={!selectedTeam}
+          className={`text-xl ${selectedTeam ? "" : "grayscale"}`}
         >
           ✅
         </button>

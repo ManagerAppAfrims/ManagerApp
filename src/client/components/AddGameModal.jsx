@@ -25,6 +25,16 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
     setShowAddGame(false);
   }
 
+  function formFilled() {
+    if (date && time && location && opponent && teamId) {
+      console.log("true filled");
+      return true;
+    } else {
+      console.log("false filled");
+      return false;
+    }
+  }
+
   async function handleAddGame() {
     try {
       await axios.post("/api/game/", {
@@ -59,8 +69,9 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
                   <select
                     onChange={(e) => setTeamId(e.target.value)}
                     className="border border-gray-400"
+                    defaultValue={"DEFAULT"}
                   >
-                    <option selected disabled>
+                    <option value="DEFAULT" disabled>
                       Select Team
                     </option>
                     {teams.map((team) => (
@@ -72,8 +83,9 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
                   <select
                     onChange={(e) => setLocation(e.target.value)}
                     className="border border-gray-400"
+                    defaultValue={"DEFAULT"}
                   >
-                    <option selected disabled>
+                    <option value="DEFAULT" disabled>
                       Select Location
                     </option>
                     <option value="Sport Park">Sports Park</option>
@@ -109,7 +121,7 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
                     Cancel
                   </button>
                   <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => handleAddGame()}
                   >

@@ -25,16 +25,19 @@ export const addUserToTeamNotification = (firstName, teamName) =>
   });
 
 export const failedAddUserToTeamNotification = (firstName, teamName) =>
-  toast.error(`Failed To Add ${firstName} To Team ${teamName}`, {
-    position: "bottom-center",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
+  toast.error(
+    `Failed To Add ${firstName} To Team ${teamName}. ${firstName} Is Already On The Roster For ${teamName}`,
+    {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    }
+  );
 
 export const addGameNotification = () =>
   toast.success(`Game Successfully Created`, {

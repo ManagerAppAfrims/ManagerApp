@@ -3,6 +3,8 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "isAdmin" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -31,8 +33,11 @@ CREATE TABLE "Game" (
     "date" TEXT NOT NULL,
     "time" TEXT NOT NULL,
     "location" TEXT NOT NULL,
+    "field" TEXT NOT NULL,
     "teamId" TEXT NOT NULL,
     "opponent" TEXT NOT NULL,
+    "score" TEXT,
+    "home" BOOLEAN NOT NULL,
 
     CONSTRAINT "Game_pkey" PRIMARY KEY ("id")
 );

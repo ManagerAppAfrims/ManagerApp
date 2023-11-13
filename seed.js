@@ -56,10 +56,11 @@ const teams = [
 ];
 
 async function seed() {
-  await prisma.userTeam
-    .deleteMany()
-    .then(async () => await prisma.user.deleteMany())
-    .then(async () => await prisma.team.deleteMany());
+  // await prisma.userTeam.deleteMany();
+  // await prisma.team.deleteMany();
+  // await prisma.user.deleteMany();
+  // .then(async () => await prisma.team.deleteMany())
+  // .then(async () => await prisma.user.deleteMany());
 
   const SALT_ROUNDS = 5;
   await Promise.all(

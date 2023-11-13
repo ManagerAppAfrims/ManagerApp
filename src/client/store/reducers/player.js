@@ -3,7 +3,10 @@ import axios from "axios";
 const GET_PLAYER = "GET_PLAYER";
 const GET_TEAM_INFO = "GET_TEAM_INFO";
 
-const BASE_URL = import.meta.env.VITE_URL || "http://localhost:3000";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://soccersavvy.onrender.com/"
+    : "http://localhost:3000";
 
 const getPlayer = (player) => ({
   type: GET_PLAYER,

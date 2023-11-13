@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://managerapp-3htx.onrender.com"
+    ? "https://soccersavvy.onrender.com/"
     : "http://localhost:3000";
 console.log("base url", BASE_URL);
 

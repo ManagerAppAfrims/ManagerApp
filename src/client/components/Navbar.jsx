@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutThunk } from "../store/reducers/auth";
+import { AiFillHome } from "react-icons/ai";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Navbar() {
   return (
     <div className="h-[8vh] flex justify-between items-center p-4 border-b-[1px] border-gray-400 w-full">
       <Link to="/home">
-        <div className="text-5xl">🏠</div>
+        <AiFillHome />
       </Link>
 
       <div className="flex gap-2">

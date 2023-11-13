@@ -10,7 +10,6 @@ function UpcomingEvents({ teams }) {
       games: team.Team.Games.filter((game) => !game.score),
     };
   });
-  console.log("remaining Games", remainingGames);
   return (
     <div className="w-full">
       <h3 className="text-2xl my-4">MY UPCOMING EVENTS</h3>

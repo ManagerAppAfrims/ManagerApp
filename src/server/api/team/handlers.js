@@ -25,4 +25,26 @@ async function getAllTeams(req, res, next) {
   }
 }
 
-module.exports = { createTeam, getAllTeams };
+async function getSingleTeam(req, res, next) {
+  const { teamId } = req.body;
+  try {
+    const team = await prisma.team.findFirst({
+      where: {
+        id: teamId,
+      },
+      include: {
+        UserTeam: {
+          include: {
+            User: true,
+          },
+        },
+      },
+    });
+    res.status(200).send(team);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+module.exports = { createTeam, getAllTeams, getSingleTeam };

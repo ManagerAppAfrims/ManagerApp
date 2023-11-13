@@ -10,21 +10,32 @@ function CreatePlayerModal({ showCreatePlayer, setShowCreatePlayer }) {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   function handleCancel() {
     setEmail("");
     setPassword("");
     setFirstName("");
     setLastName("");
+    setPhoneNumber("");
     setShowCreatePlayer(false);
   }
 
   function handleCreatePlayer() {
-    dispatch(createUserThunk({ email, password, firstName, lastName }));
+    dispatch(
+      createUserThunk({
+        email,
+        password,
+        firstName,
+        lastName,
+        phoneNumber: phoneNumber.replaceAll(/[\D]/g, ""),
+      })
+    );
     setEmail("");
     setPassword("");
     setFirstName("");
     setLastName("");
+    setPhoneNumber("");
     setShowCreatePlayer(false);
     createUserNotification();
   }
@@ -53,6 +64,13 @@ function CreatePlayerModal({ showCreatePlayer, setShowCreatePlayer }) {
                     placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <input
+                    className="border border-gray-400 indent-3 w-full"
+                    placeholder="phone number"
+                    value={phoneNumber}
+                    type="tel"
+                    onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                   <input
                     className="border border-gray-400 indent-3 w-full"

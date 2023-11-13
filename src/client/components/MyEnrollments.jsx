@@ -7,10 +7,12 @@ import { BsFillCalendar2EventFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { FaShieldHalved } from "react-icons/fa6";
 import { AiFillExclamationCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 function MyEnrollments({ teams }) {
   const remainingGames = teams.map((team) => {
     return {
+      teamId: team.Team.id,
       name: team.Team.name,
       games: team.Team.Games.filter((game) => !game.score),
     };
@@ -25,7 +27,9 @@ function MyEnrollments({ teams }) {
             className="flex flex-col gap-4 w-full border-b-[2px] border-gray-400 bg-white shadow-md mb-6"
           >
             <div className="w-full p-3">
-              <h3>{team.name.toUpperCase()}</h3>
+              <Link to={`/team/${team.teamId}`}>
+                <h3>{team.name.toUpperCase()}</h3>
+              </Link>
               <h3>2023-2024 Winter 1 (Nov-Dec) Adult Leagues</h3>
             </div>
             <div className="bg-[#EFEEF0] p-3">

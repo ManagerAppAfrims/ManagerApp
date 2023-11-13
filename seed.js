@@ -7,6 +7,7 @@ const users = [
     password: "123",
     firstName: "Chris",
     lastName: "Nieves",
+    phoneNumber: "5183015721",
     isAdmin: true,
   },
   {
@@ -14,6 +15,7 @@ const users = [
     password: "0426",
     firstName: "Annie",
     lastName: "Rose",
+    phoneNumber: "6179620426",
     isAdmin: true,
   },
   {
@@ -21,6 +23,7 @@ const users = [
     password: "8393",
     firstName: "Jonathan",
     lastName: "Brzozowski",
+    phoneNumber: "6033008393",
     isAdmin: true,
   },
   {
@@ -28,6 +31,7 @@ const users = [
     password: "4280",
     firstName: "Charlie",
     lastName: "Clarke",
+    phoneNumber: "5184144280",
     isAdmin: false,
   },
   {
@@ -35,6 +39,7 @@ const users = [
     password: "0359",
     firstName: "David",
     lastName: "Gao",
+    phoneNumber: "5057090359",
     isAdmin: false,
   },
   {
@@ -42,6 +47,7 @@ const users = [
     password: "7773",
     firstName: "Brendan",
     lastName: "Dix",
+    phoneNumber: "6037327773",
     isAdmin: false,
   },
   {
@@ -49,6 +55,7 @@ const users = [
     password: "3061",
     firstName: "Emily",
     lastName: "Byers",
+    phoneNumber: "7246513061",
     isAdmin: false,
   },
   {
@@ -56,6 +63,7 @@ const users = [
     password: "9477",
     firstName: "Kimberly",
     lastName: "Dix",
+    phoneNumber: "9788669477",
     isAdmin: false,
   },
   {
@@ -63,6 +71,7 @@ const users = [
     password: "7250",
     firstName: "Duncan",
     lastName: "Leathrum",
+    phoneNumber: "7573757250",
     isAdmin: false,
   },
   {
@@ -70,6 +79,7 @@ const users = [
     password: "7446",
     firstName: "Mike",
     lastName: "McKay",
+    phoneNumber: "5189447446",
     isAdmin: false,
   },
   {
@@ -77,6 +87,7 @@ const users = [
     password: "4118",
     firstName: "Nijaz",
     lastName: "Velic",
+    phoneNumber: "3157234118",
     isAdmin: false,
   },
   {
@@ -84,6 +95,7 @@ const users = [
     password: "4356",
     firstName: "Peter",
     lastName: "Scatena",
+    phoneNumber: "5189444356",
     isAdmin: false,
   },
   {
@@ -91,6 +103,7 @@ const users = [
     password: "3528",
     firstName: "Prateek",
     lastName: "Hundekar",
+    phoneNumber: "5184963528",
     isAdmin: false,
   },
   {
@@ -98,6 +111,7 @@ const users = [
     password: "9654",
     firstName: "Reda",
     lastName: "Babas",
+    phoneNumber: "4108689654",
     isAdmin: false,
   },
   {
@@ -105,6 +119,7 @@ const users = [
     password: "5150",
     firstName: "Thomas",
     lastName: "Riggi",
+    phoneNumber: "5183385150",
     isAdmin: false,
   },
   {
@@ -112,6 +127,7 @@ const users = [
     password: "1811",
     firstName: "Cole",
     lastName: "Caynoski",
+    phoneNumber: "9703761811",
     isAdmin: false,
   },
 ];
@@ -126,7 +142,10 @@ const teams = [
 ];
 
 async function seed() {
-  // await prisma.userTeam.deleteMany();
+  // await prisma.userTeam
+  //   .deleteMany()
+  //   .then(async () => await prisma.team.deleteMany())
+  //   .then(async () => await prisma.user.deleteMany());
   // await prisma.team.deleteMany();
   // await prisma.user.deleteMany();
   // .then(async () => await prisma.team.deleteMany())
@@ -135,7 +154,6 @@ async function seed() {
   const SALT_ROUNDS = 5;
   await Promise.all(
     users.map(async (user) => {
-      console.log("user email", user.email);
       const hashedPassword = await bcrypt.hash(user.password, SALT_ROUNDS);
       return prisma.user.create({
         data: {
@@ -144,6 +162,7 @@ async function seed() {
           isAdmin: user.isAdmin,
           firstName: user.firstName,
           lastName: user.lastName,
+          phoneNumber: user.phoneNumber,
         },
       });
     })

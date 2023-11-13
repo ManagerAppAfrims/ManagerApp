@@ -11,14 +11,15 @@ datasource db {
 }
 
 model User {
-  id        String     @id @default(uuid())
-  email     String     @unique
-  password  String
-  firstName String
-  lastName  String
-  isAdmin   Boolean    @default(false)
-  createdAt DateTime   @default(now())
-  UserTeam  UserTeam[]
+  id          String     @id @default(uuid())
+  email       String     @unique
+  password    String
+  firstName   String
+  lastName    String
+  phoneNumber String
+  isAdmin     Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  UserTeam    UserTeam[]
 }
 
 model UserTeam {

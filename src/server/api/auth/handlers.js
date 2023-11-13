@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const prisma = require("../../client");
 
 async function createUser(req, res, next) {
-  const { email, password, firstName, lastName } = req.body;
+  const { email, password, firstName, lastName, phoneNumber } = req.body;
 
   const SALT_ROUNDS = 5;
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
@@ -28,6 +28,7 @@ async function createUser(req, res, next) {
         password: hashedPassword,
         firstName,
         lastName,
+        phoneNumber,
       },
     });
 

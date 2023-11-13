@@ -92,13 +92,15 @@ async function findUserByToken(req, res, next) {
       throw "oh no!";
     }
     console.log("user from server", user);
-    res.status(200).send({
+    const response = {
       id: user.id,
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
       isAdmin: user.isAdmin,
-    });
+    };
+    console.log("response", response);
+    res.status(200).send(response);
   } catch (error) {
     console.error(error);
     next(error);

@@ -11,11 +11,12 @@ function Login() {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
+    alert("CLICKED LOGIN!");
     dispatch(loginUserThunk({ email, password }));
   };
 
   return (
-    <div className="h-[100vh] bg-[url('src/client/assets/login_registerBG.jpeg')] bg-cover bg-center flex flex-col justify-center items-center w-[100vw]">
+    <div className="h-[100vh] flex flex-col justify-center items-center w-[100vw]">
       <div className="h-1/2 flex flex-col justify-center items-center w-4/5">
         <input
           placeholder="email"

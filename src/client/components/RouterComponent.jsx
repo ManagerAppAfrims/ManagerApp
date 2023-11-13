@@ -29,7 +29,6 @@ function RouterComponent() {
   }
 
   if (user.id) {
-    console.log("i have Id");
     return (
       <Routes>
         <Route index element={<Home />} />

@@ -3,6 +3,8 @@ import axios from "axios";
 const GET_TEAMS = "GET_TEAMS";
 // const GET_USER = "GET_USER";
 
+const BASE_URL = import.meta.env.VITE_URL || "http://localhost:3000";
+
 const getTeams = (teams) => ({
   type: GET_TEAMS,
   payload: teams,
@@ -10,7 +12,7 @@ const getTeams = (teams) => ({
 
 export const getTeamsThunk = () => async (dispatch) => {
   try {
-    const { data: teams } = await axios.get(`/api/team/all`);
+    const { data: teams } = await axios.get(`${BASE_URL}/api/team/all`);
     return dispatch(getTeams(teams));
   } catch (error) {
     console.error(error);

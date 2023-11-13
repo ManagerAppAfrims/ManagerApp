@@ -2,7 +2,6 @@ const prisma = require("../../client");
 
 async function createGame(req, res, next) {
   const { date, time, location, field, teamId, opponent, home } = req.body;
-  console.log("req body", req.body);
   try {
     const duplicate = await prisma.game.findFirst({
       where: {
@@ -27,7 +26,6 @@ async function createGame(req, res, next) {
         teamId,
       },
     });
-    console.log("created game", game);
     res
       .status(201)
       .send({ message: `Game ${game.id} created successfully`, game });

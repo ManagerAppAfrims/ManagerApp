@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function LoginHome() {
   return (
-    <div className="h-[100vh] bg-[url('src/client/assets/loginBG.jpg')] flex flex-col justify-end items-center bg-center bg-cover w-[100vw]">
+    <div className="h-[100vh] bg-[url('/backgrounds/loginBG.jpg')] flex flex-col justify-end items-center bg-center bg-cover w-[100vw]">
       <div className="flex flex-col w-4/5 my-4">
         <Link
           to="/login"

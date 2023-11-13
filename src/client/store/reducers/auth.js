@@ -83,11 +83,12 @@ export const registerUserThunk =
 export const meThunk = () => async (dispatch) => {
   const token = window.sessionStorage.getItem("TOKEN");
   if (token) {
-    const { data } = await axios.get("/auth/me", {
+    const { data } = await axios.get(`${BASE_URL}/auth/me`, {
       headers: {
         authorization: token,
       },
     });
+    console.log("data from getMe thunk", data);
     dispatch(getMe(data));
   }
 };

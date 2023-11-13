@@ -1,5 +1,4 @@
 import axios from "axios";
-import history from "../../history";
 
 const BASE_URL = import.meta.env.VITE_URL || "http://localhost:3000";
 
@@ -46,7 +45,6 @@ export const loginUserThunk =
 
       if (!userObj.message) {
         dispatch(login(userObj.user));
-        history.push("/home");
       } else {
         console.error(error);
         dispatch(error(userObj.message));

@@ -12,7 +12,7 @@ function AdminDash() {
   const [showCreateTeam, setShowCreateTeam] = useState(false);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-full">
       <div className="w-4/5 flex flex-col items-center">
         <h1 className="text-2xl mb-8 mt-4">Admin Dashboard</h1>
         <div className="flex flex-col items-center gap-4 w-full">

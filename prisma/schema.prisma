@@ -42,8 +42,10 @@ model Game {
   date     String
   time     String
   location String
+  field    String
   teamId   String
   opponent String
   score    String?
+  home     Boolean
   Team     Team    @relation(fields: [teamId], references: [id])
 }

@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import moment from "moment";
 
 export const createUserNotification = () =>
   toast.success("Player Created", {
@@ -101,4 +102,20 @@ export function convertMilitaryTime(time) {
   }
 
   return result;
+}
+
+export function convertDay(date) {
+  // Convert string to Date object
+  const result = moment(date).format("ddd, MMM Do");
+  return result.slice(0, result.length - 2);
+}
+
+export function gameCount(teams) {
+  const result = [];
+  for (const team of teams) {
+    for (const game of team.Team.Games) {
+      result.push(game);
+    }
+  }
+  return result.length;
 }

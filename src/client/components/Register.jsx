@@ -23,7 +23,7 @@ function Register() {
   }
 
   return (
-    <div className="h-[100vh] bg-[url('src/client/assets/login_registerBG.jpeg')] bg-cover bg-center flex flex-col justify-center items-center">
+    <div className="h-[100vh] bg-[url('src/client/assets/login_registerBG.jpeg')] bg-cover bg-center flex flex-col justify-center items-center w-[100vw]">
       <div className="h-1/2 flex flex-col justify-center items-center w-4/5">
         <input
           placeholder="email"

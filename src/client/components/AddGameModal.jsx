@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 import { getTeamsThunk } from "../store/reducers/teams";
 import { addGameNotification, failedAddGameNotification } from "../utils.js";
 import axios from "axios";
+
+const fields = [
+  "Field 1 IN",
+  "Field 2 IN",
+  "Field 3 IN",
+  "Field 4 IN",
+  "Field 1 OUT",
+  "Field 2 OUT",
+  "Field 3 OUT",
+  "Field 4 OUT",
+];
 
 function AddGameModal({ showAddGame, setShowAddGame }) {
   const dispatch = useDispatch();
@@ -11,6 +23,8 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
+  const [field, setField] = useState("");
+  const [home, setHome] = useState();
   const [opponent, setOpponent] = useState("");
   const [teamId, setTeamId] = useState("");
 
@@ -19,20 +33,13 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
   }, []);
 
   function handleCancel() {
-    setDate(undefined);
+    setDate("");
+    setTime("");
     setLocation("");
+    setField("");
+    setHome();
     setOpponent("");
     setShowAddGame(false);
-  }
-
-  function formFilled() {
-    if (date && time && location && opponent && teamId) {
-      console.log("true filled");
-      return true;
-    } else {
-      console.log("false filled");
-      return false;
-    }
   }
 
   async function handleAddGame() {
@@ -41,10 +48,16 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
         date,
         time,
         location,
+        field,
+        home,
         teamId,
         opponent,
       });
       addGameNotification();
+      setDate("");
+      setTime("");
+      setOpponent("");
+      setHome();
       setShowAddGame(false);
     } catch (error) {
       console.error(error);
@@ -88,9 +101,40 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
                     <option value="DEFAULT" disabled>
                       Select Location
                     </option>
-                    <option value="Sport Park">Sports Park</option>
-                    <option value="Colonie">Colonie</option>
-                    <option value="Latham Dome">Latham Dome</option>
+                    <option value="Afrim's Sports: SP">
+                      Afrim's Sports: SP
+                    </option>
+                    <option value="Afrim's Sports: Colonie">
+                      Afrim's Sports: Colonie
+                    </option>
+                    <option value="Afrim's Sports: Dome-Latham">
+                      Afrim's Sports: Dome-Latham
+                    </option>
+                  </select>
+                  <select
+                    onChange={(e) => setField(e.target.value)}
+                    className="border border-gray-400"
+                    defaultValue={"DEFAULT"}
+                  >
+                    <option value="DEFAULT" disabled>
+                      Select Location
+                    </option>
+                    {fields.map((field) => (
+                      <option key={uuidv4()} value={field}>
+                        {field}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    onChange={(e) => setHome(e.target.value)}
+                    className="border border-gray-400"
+                    defaultValue={"DEFAULT"}
+                  >
+                    <option value="DEFAULT" disabled>
+                      Home/Away
+                    </option>
+                    <option value={true}>Home</option>
+                    <option value={false}>Away</option>
                   </select>
                   <input
                     className="border border-gray-400 indent-3 w-full"
@@ -123,6 +167,7 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
                   <button
                     className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
+                    disabled={!(date && time && location && opponent)}
                     onClick={() => handleAddGame()}
                   >
                     Add Game

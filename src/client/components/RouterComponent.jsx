@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import LoginHome from "./LoginHome";
 import Login from "./Login";
 import Register from "./Register";
@@ -10,10 +10,12 @@ import AdminDash from "./AdminDash";
 
 function RouterComponent() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.me);
 
   useEffect(() => {
     dispatch(meThunk());
+    navigate("/");
   }, [user.id]);
 
   if (user.id && user.isAdmin) {
@@ -27,12 +29,14 @@ function RouterComponent() {
   }
 
   if (user.id) {
-    <Routes>
-      <Route index element={<Home />} />
-      <Route path="/home" element={<Home />} />
-    </Routes>;
+    console.log("i have Id");
+    return (
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    );
   }
-
   return (
     <Routes>
       <Route index element={<LoginHome />} />

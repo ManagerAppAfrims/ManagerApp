@@ -18,7 +18,7 @@ function Home() {
     dispatch(getTeamInfoThunk(me.id));
   }, []);
   return (
-    <div className="flex flex-col items-center min-h-[92vh] bg-[#F7F7F7] w-[95vw]">
+    <div className="flex flex-col items-center min-h-[92vh] bg-[#F7F7F7] w-[95vw] overflow-auto">
       <h2 className="text-3xl my-2">
         WELCOME BACK, {me.firstName.toUpperCase()}
       </h2>

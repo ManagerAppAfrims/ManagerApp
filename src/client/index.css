@@ -3,12 +3,8 @@
 @tailwind utilities;
 
 body {
-  min-height: 100vh;
-  min-height: stretch;
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: stretch;
-  height: -webkit-fill-available;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }

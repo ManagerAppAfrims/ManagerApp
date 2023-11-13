@@ -10,6 +10,8 @@ export default defineConfig({
       manifest: {
         name: "Soccer Savvy",
         short_name: "Soccer Savvy",
+        description:
+          "Schedule and stat keeper for Double Brace and Silence of the Llamas",
         icons: [
           {
             src: "/icons/512.png",

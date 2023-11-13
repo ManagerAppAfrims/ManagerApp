@@ -13,7 +13,7 @@ function Navbar() {
   }
 
   return (
-    <div className="h-[8vh] flex justify-between items-center p-4 border-b-[1px] border-gray-400 w-full">
+    <div className="h-[8vh] flex justify-between items-center p-4 border-b-[1px] border-gray-400 w-full sticky top-0 bg-white">
       <Link to="/home">
         <AiFillHome className="text-4xl" />
       </Link>

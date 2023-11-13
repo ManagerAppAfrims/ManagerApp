@@ -19,17 +19,21 @@ function UpcomingEvents({ teams }) {
               >
                 <div className="flex justify-between">
                   <div>
-                    <h3 className="flex items-center">
-                      <TbCircleLetterA />
-                      {team.Team.Games[0].home
-                        ? team.Team.Games[0].opponent
-                        : team.Team.name}{" "}
-                      vs
-                      <AiOutlineHome className="ml-1" />
-                      {team.Team.Games[0].home
-                        ? team.Team.name
-                        : team.Team.Games[0].opponent}
-                    </h3>
+                    <div className="flex flex-col">
+                      <div className="flex items-center">
+                        <TbCircleLetterA />
+                        {team.Team.Games[0].home
+                          ? team.Team.Games[0].opponent
+                          : team.Team.name}
+                      </div>
+                      <h3 className="ml-4">vs</h3>
+                      <div className="flex items-center">
+                        <AiOutlineHome />
+                        {team.Team.Games[0].home
+                          ? team.Team.name
+                          : team.Team.Games[0].opponent}
+                      </div>
+                    </div>
                     <h3>{team.Team.Games[0].location}</h3>
                   </div>
                   <div>

@@ -23,6 +23,7 @@ export const getPlayerInfoThunk = (playerId) => async (dispatch) => {
         firstName: player.firstName,
         lastName: player.lastName,
         email: player.email,
+        phoneNumber: player.phoneNumber,
       })
     );
   } catch (error) {

@@ -5,7 +5,7 @@ const GET_TEAM_INFO = "GET_TEAM_INFO";
 
 const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://soccersavvy.onrender.com/"
+    ? "https://soccersavvy.onrender.com"
     : "http://localhost:3000";
 
 const getPlayer = (player) => ({

@@ -41,12 +41,11 @@ export const createUserThunk = (playerInfo) => async (dispatch) => {
 };
 
 export const getTeamInfoThunk = (playerId) => async (dispatch) => {
-  console.log("playerId from team thunk", playerId);
   try {
     const { data: teams } = await axios.get(
       `${BASE_URL}/api/player/teams/${playerId}`
     );
-    // console.log("teams from team thunk", teams);
+
     dispatch(getTeamInfo(teams));
   } catch (error) {
     console.error(error);

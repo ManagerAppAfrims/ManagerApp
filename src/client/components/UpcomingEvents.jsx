@@ -4,14 +4,19 @@ import { AiOutlineHome } from "react-icons/ai";
 import { TbCircleLetterA } from "react-icons/tb";
 import { convertMilitaryTime, convertDay, gameCount } from "../utils";
 function UpcomingEvents({ teams }) {
-  const gamesCount = gameCount(teams);
-
+  const remainingGames = teams.map((team) => {
+    return {
+      name: team.Team.name,
+      games: team.Team.Games.filter((game) => !game.score),
+    };
+  });
+  console.log("remaining Games", remainingGames);
   return (
     <div className="w-full">
       <h3 className="text-2xl my-4">MY UPCOMING EVENTS</h3>
       {teams.length > 0 &&
-        teams.map((team) => {
-          if (team.Team.Games.length > 0) {
+        remainingGames.map((team) => {
+          if (team.games.length > 0) {
             return (
               <div
                 key={uuidv4()}
@@ -22,26 +27,26 @@ function UpcomingEvents({ teams }) {
                     <div className="flex flex-col">
                       <div className="flex items-center">
                         <TbCircleLetterA />
-                        {team.Team.Games[0].home
-                          ? team.Team.Games[0].opponent
-                          : team.Team.name}
+                        {team.games[0].home
+                          ? team.games[0].opponent
+                          : team.name}
                       </div>
                       <h3 className="ml-4">vs</h3>
                       <div className="flex items-center">
                         <AiOutlineHome />
-                        {team.Team.Games[0].home
-                          ? team.Team.name
-                          : team.Team.Games[0].opponent}
+                        {team.games[0].home
+                          ? team.name
+                          : team.games[0].opponent}
                       </div>
                     </div>
-                    <h3>{team.Team.Games[0].location}</h3>
+                    <h3>{team.games[0].location}</h3>
                   </div>
                   <div>
                     <h3 className="font-bold text-sm">
-                      {convertDay(team.Team.Games[0].date)}
+                      {convertDay(team.games[0].date)}
                     </h3>
                     <h3 className="font-bold text-sm">
-                      {convertMilitaryTime(team.Team.Games[0].time)}
+                      {convertMilitaryTime(team.games[0].time)}
                     </h3>
                   </div>
                 </div>

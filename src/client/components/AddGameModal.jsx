@@ -117,7 +117,7 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
                     defaultValue={"DEFAULT"}
                   >
                     <option value="DEFAULT" disabled>
-                      Select Location
+                      Select Field
                     </option>
                     {fields.map((field) => (
                       <option key={uuidv4()} value={field}>

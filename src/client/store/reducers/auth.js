@@ -4,7 +4,6 @@ const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://soccersavvy.onrender.com"
     : "http://localhost:3000";
-console.log("base url", BASE_URL);
 
 const LOGIN = "LOGIN";
 const REGISTER = "REGISTER";
@@ -92,7 +91,7 @@ export const meThunk = () => async (dispatch) => {
         authorization: token,
       },
     });
-    console.log("data from getMe thunk", data);
+
     dispatch(getMe(data));
   }
 };

@@ -8,7 +8,8 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: {
-        theme_color: "#ffffff",
+        name: "Soccer Savvy",
+        short_name: "Soccer Savvy",
         icons: [
           {
             src: "/icons/512.png",
@@ -17,6 +18,11 @@ export default defineConfig({
             purpose: "any maskable",
           },
         ],
+        start_url: "/",
+        display: "standalone",
+        orientation: "portrait",
+        background_color: "#ffffff",
+        theme_color: "#ffffff",
       },
     }),
   ],

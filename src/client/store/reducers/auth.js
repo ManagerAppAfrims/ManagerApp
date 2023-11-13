@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_URL || "http://localhost:3000";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://managerapp-3htx.onrender.com/"
+    : "http://localhost:3000";
+console.log("base url", BASE_URL);
 
 const LOGIN = "LOGIN";
 const REGISTER = "REGISTER";

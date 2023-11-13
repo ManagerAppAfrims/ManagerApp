@@ -78,20 +78,19 @@ async function login(req, res, next) {
 
 async function findUserByToken(req, res, next) {
   const token = req.headers.authorization;
-  console.log("token", token);
   try {
     const { userId } = await jwt.verify(token, process.env.JWT_SECRET);
-    console.log("userId", userId);
+
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
       },
     });
-    console.log("user from find user by token", user);
+
     if (!user) {
       throw "oh no!";
     }
-    console.log("user from server", user);
+
     const response = {
       id: user.id,
       email: user.email,
@@ -99,7 +98,7 @@ async function findUserByToken(req, res, next) {
       lastName: user.lastName,
       isAdmin: user.isAdmin,
     };
-    console.log("response", response);
+
     res.status(200).send(response);
   } catch (error) {
     console.error(error);

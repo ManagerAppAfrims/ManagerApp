@@ -14,7 +14,7 @@ function MyEnrollments({ teams }) {
     return {
       teamId: team.Team.id,
       name: team.Team.name,
-      games: team.Team.Games.filter((game) => !game.score),
+      games: team.Team.Games.filter((game) => !game.completed),
     };
   });
   return (

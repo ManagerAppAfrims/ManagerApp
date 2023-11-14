@@ -7,7 +7,7 @@ function UpcomingEvents({ teams }) {
   const remainingGames = teams.map((team) => {
     return {
       name: team.Team.name,
-      games: team.Team.Games.filter((game) => !game.score),
+      games: team.Team.Games.filter((game) => !game.completed),
     };
   });
   return (

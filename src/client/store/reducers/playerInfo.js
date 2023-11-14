@@ -18,7 +18,7 @@ export const getPlayerInfoThunk = (playerId) => async (dispatch) => {
     const { data: player } = await axios.get(
       `${BASE_URL}/api/player/${playerId}`
     );
-    console.log("player from thunk", player);
+
     return dispatch(
       getPlayerInfo({
         firstName: player.firstName,

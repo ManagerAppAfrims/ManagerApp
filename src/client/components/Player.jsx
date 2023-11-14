@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPlayerInfoThunk } from "../store/reducers/playerInfo";
 
 function Player({ player }) {
-  console.log("player", player);
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>

@@ -41,14 +41,24 @@ model Team {
 }
 
 model Game {
-  id       String  @id @default(uuid())
-  date     String
-  time     String
-  location String
-  field    String
-  teamId   String
-  opponent String
-  score    String?
-  home     Boolean
-  Team     Team    @relation(fields: [teamId], references: [id])
+  id            String  @id @default(uuid())
+  date          String
+  time          String
+  location      String
+  field         String
+  teamId        String
+  opponent      String
+  ourGoals      Int?
+  opponentGoals Int?
+  completed     Boolean @default(false)
+  result        Result  @default(undecided)
+  home          Boolean
+  Team          Team    @relation(fields: [teamId], references: [id])
+}
+
+enum Result {
+  win
+  loss
+  tie
+  undecided
 }

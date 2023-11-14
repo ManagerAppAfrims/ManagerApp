@@ -18,25 +18,25 @@ function AdminDash() {
         <div className="flex flex-col items-center gap-4 w-full">
           <button
             onClick={() => setShowCreatePlayer(true)}
-            className="bg-blue-500 py-2 px-4 rounded-full w-full text-xl"
+            className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
           >
             Create Player
           </button>
           <button
             onClick={() => setShowCreateTeam(true)}
-            className="bg-blue-500 py-2 px-4 rounded-full w-full text-xl"
+            className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
           >
             Create Team
           </button>
           <button
             onClick={() => setShowAddGame(true)}
-            className="bg-blue-500 py-2 px-4 rounded-full w-full text-xl"
+            className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
           >
             Add Game
           </button>
           <button
             onClick={() => setShowAddPlayerToTeam(true)}
-            className="bg-blue-500 py-2 px-4 rounded-full w-full text-xl"
+            className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
           >
             Add Player To Team
           </button>

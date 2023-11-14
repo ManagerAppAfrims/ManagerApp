@@ -38,7 +38,7 @@ function UpcomingEvents({ teams }) {
                           : team.games[0].opponent}
                       </div>
                     </div>
-                    <h3>{team.games[0].location}</h3>
+                    <h3>{`${team.games[0].location} ${team.games[0].field}`}</h3>
                   </div>
                   <div>
                     <h3 className="font-bold text-sm">

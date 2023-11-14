@@ -8,7 +8,7 @@ async function getPlayerInfo(req, res, next) {
         id: playerId,
       },
     });
-
+    console.log("player from server", player);
     res.status(200).send(player);
   } catch (error) {
     console.error(error);

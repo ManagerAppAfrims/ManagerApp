@@ -17,6 +17,8 @@ model User {
   firstName   String
   lastName    String
   phoneNumber String
+  goals       Int        @default(0)
+  assists     Int        @default(0)
   isAdmin     Boolean    @default(false)
   createdAt   DateTime   @default(now())
   UserTeam    UserTeam[]

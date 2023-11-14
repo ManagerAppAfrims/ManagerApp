@@ -21,7 +21,9 @@ function AddGameModal({ showAddGame, setShowAddGame }) {
   const dispatch = useDispatch();
   const teams = useSelector((state) => state.teams);
   const [date, setDate] = useState("");
+  console.log("date", date);
   const [time, setTime] = useState("");
+  console.log("time", time);
   const [location, setLocation] = useState("");
   const [field, setField] = useState("");
   const [home, setHome] = useState();

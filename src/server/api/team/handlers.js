@@ -40,6 +40,7 @@ async function getSingleTeam(req, res, next) {
         },
       },
     });
+    console.log("team from server", team.UserTeam[0]);
     res.status(200).send(team);
   } catch (error) {
     console.error(error);

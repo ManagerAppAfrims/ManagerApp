@@ -76,6 +76,18 @@ export const addTeamNotification = (teamName) =>
     theme: "light",
   });
 
+export const updateGameNotification = () =>
+  toast.success(`Game Successfully Updated`, {
+    position: "bottom-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
 export const failedCreateTeamNotification = (teamName) =>
   toast.success(`Failed To Create Team`, {
     position: "bottom-center",

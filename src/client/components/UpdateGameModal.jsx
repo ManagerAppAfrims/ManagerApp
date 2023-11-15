@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTeamsThunk } from "../store/reducers/teams";
-import AddPlayerOption from "./AddPlayerOption";
 import axios from "axios";
+import { updateGameNotification } from "../utils";
 
 function UpdateGameModal({ showUpdateGame, setShowUpdateGame }) {
   const dispatch = useDispatch();
@@ -38,6 +38,7 @@ function UpdateGameModal({ showUpdateGame, setShowUpdateGame }) {
         result,
         completed,
       });
+      updateGameNotification();
       setShowUpdateGame(false);
     } catch (error) {
       console.error(error);

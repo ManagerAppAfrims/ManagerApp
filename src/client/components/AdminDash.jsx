@@ -12,7 +12,6 @@ function AdminDash() {
   const [showAddGame, setShowAddGame] = useState(false);
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const [showUpdateGame, setShowUpdateGame] = useState(false);
-  console.log("open", showUpdateGame);
 
   return (
     <div className="flex flex-col items-center w-full">

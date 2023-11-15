@@ -27,7 +27,6 @@ async function getAllTeams(req, res, next) {
 
 async function getSingleTeam(req, res, next) {
   const { teamId } = req.params;
-  console.log("teamId from server", teamId);
   try {
     const team = await prisma.team.findFirst({
       where: {
@@ -42,7 +41,6 @@ async function getSingleTeam(req, res, next) {
         Games: true,
       },
     });
-    // console.log("team from server", team);
     res.status(200).send(team);
   } catch (error) {
     console.error(error);

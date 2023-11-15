@@ -4,12 +4,15 @@ import CreatePlayerModal from "./CreatePlayerModal";
 import AddPlayerToTeamModal from "./AddPlayerToTeamModal";
 import AddGameModal from "./AddGameModal";
 import CreateTeamModal from "./CreateTeamModal";
+import UpdateGameModal from "./UpdateGameModal";
 
 function AdminDash() {
   const [showCreatePlayer, setShowCreatePlayer] = useState(false);
   const [showAddPlayerToTeam, setShowAddPlayerToTeam] = useState(false);
   const [showAddGame, setShowAddGame] = useState(false);
   const [showCreateTeam, setShowCreateTeam] = useState(false);
+  const [showUpdateGame, setShowUpdateGame] = useState(false);
+  console.log("open", showUpdateGame);
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -29,21 +32,31 @@ function AdminDash() {
             Create Team
           </button>
           <button
+            onClick={() => setShowAddPlayerToTeam(true)}
+            className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
+          >
+            Add Player To Team
+          </button>
+          <button
             onClick={() => setShowAddGame(true)}
             className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
           >
             Add Game
           </button>
           <button
-            onClick={() => setShowAddPlayerToTeam(true)}
+            onClick={() => setShowUpdateGame(true)}
             className="bg-black py-2 px-4 rounded-full w-full text-xl text-white"
           >
-            Add Player To Team
+            Update Game
           </button>
         </div>
         <CreatePlayerModal
           showCreatePlayer={showCreatePlayer}
           setShowCreatePlayer={setShowCreatePlayer}
+        />
+        <CreateTeamModal
+          showCreateTeam={showCreateTeam}
+          setShowCreateTeam={setShowCreateTeam}
         />
         <AddPlayerToTeamModal
           showAddPlayerToTeam={showAddPlayerToTeam}
@@ -53,9 +66,9 @@ function AdminDash() {
           showAddGame={showAddGame}
           setShowAddGame={setShowAddGame}
         />
-        <CreateTeamModal
-          showCreateTeam={showCreateTeam}
-          setShowCreateTeam={setShowCreateTeam}
+        <UpdateGameModal
+          showUpdateGame={showUpdateGame}
+          setShowUpdateGame={setShowUpdateGame}
         />
         <ToastContainer
           position="bottom-center"

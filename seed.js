@@ -141,88 +141,88 @@ const teams = [
   },
 ];
 
-const doubleId = "2a1142b2-e8c4-4cf1-845b-0f6999cf552f";
-const llamasId = "41064aed-6778-4b9f-810f-8555a94c7aca";
+const doubleId = "d763eaa4-8ac5-43aa-a382-39338a9138c3";
+const llamasId = "46079d1a-b4de-4117-b36f-c67f5655eb84";
 
 const teamAssociations = [
-  // {
-  //   name: "annie rose",
-  //   userId: "9e744928-ffef-4594-ba84-652051363ac1",
-  //   teamIds: [llamasId, doubleId],
-  // },
-  // {
-  //   name: "brendan dix",
-  //   userId: "80a1896d-7ad4-4b6a-8457-53aa30611641",
-  //   teamIds: [llamasId, doubleId],
-  // },
-  // {
-  //   name: "charlie clarke",
-  //   userId: "ea9ec744-de20-4c78-aa69-decaaf9e5c0f",
-  //   teamIds: [doubleId, llamasId],
-  // },
-  // {
-  //   name: "chris nieves",
-  //   userId: "4d91e4bd-9e7b-4bf9-9a47-c0a63d274cbb",
-  //   teamIds: [doubleId, llamasId],
-  // },
+  {
+    name: "annie rose",
+    userId: "d4fd72a1-bbbf-45e3-b7b0-b6dbd422cfbd",
+    teamIds: [llamasId, doubleId],
+  },
+  {
+    name: "brendan dix",
+    userId: "092c6c26-d909-4263-8f4b-77631ad6b59d",
+    teamIds: [llamasId, doubleId],
+  },
+  {
+    name: "charlie clarke",
+    userId: "d9106b58-4b18-4bfd-afc1-33c257b995d6",
+    teamIds: [doubleId, llamasId],
+  },
+  {
+    name: "chris nieves",
+    userId: "4b87cb02-4615-4d8c-b76c-67bb84c7e64a",
+    teamIds: [doubleId, llamasId],
+  },
   {
     name: "cole caynoski",
-    userId: "bae0d880-990c-488c-b574-06ee1ca088ec",
+    userId: "3c7df593-4172-43d7-a6cc-83fefd621f92",
     teamIds: [doubleId],
   },
   {
     name: "dave gao",
-    userId: "bcc73536-a3b4-484d-a2b5-e87947b19a6e",
+    userId: "ef0ff9f4-6155-479e-b21a-dd86136eec5d",
     teamIds: [doubleId, llamasId],
   },
   {
     name: "duncan leathrum",
-    userId: "9b0143d0-36e1-48aa-b3e0-9ff1e5b5b840",
+    userId: "9b84135c-58a3-422d-bfff-9420efb44f7a",
     teamIds: [doubleId],
   },
   {
     name: "emily byers",
-    userId: "fca0a535-fc77-45cf-9bb0-bd06e3f400f4",
+    userId: "3f038bae-0b36-40db-ac80-6fb8546a034c",
     teamIds: [llamasId],
   },
   {
     name: "john brzozowski",
-    userId: "da2484e2-b4ab-4515-b9d4-ac62ce0679c6",
+    userId: "fd01cdd2-ed4b-4cfc-9246-07f7ab688e40",
     teamIds: [doubleId],
   },
   {
     name: "kimberly dix",
-    userId: "5a0682c9-4086-4449-baa5-857c76cd19b6",
+    userId: "a3c68983-5a01-4625-b294-90cf9dfe7fb7",
     teamIds: [llamasId],
   },
   {
     name: "michael mckay",
-    userId: "a5c03737-b6b0-4e20-af27-b2df3a89ed73",
+    userId: "270349a3-a993-451f-9f77-16691d15d8cc",
     teamIds: [llamasId, doubleId],
   },
   {
     name: "nijaz velic",
-    userId: "b7bd1177-8c6f-4e88-ace0-42e421f92808",
+    userId: "a8b43089-4a4e-4449-863e-49f37e6042d5",
     teamIds: [doubleId, llamasId],
   },
   {
     name: "peter scatena",
-    userId: "a7b1434c-0b1c-466a-bc4e-f2b93ced91e1",
+    userId: "79b16333-9bca-42bd-a955-fa2749875ef6",
     teamIds: [llamasId, doubleId],
   },
   {
     name: "prateek hundekar",
-    userId: "dd87ad98-f7fa-40fb-8065-304937671fe7",
+    userId: "2ff01199-e892-4b44-b0e6-88938136b4f5",
     teamIds: [llamasId],
   },
   {
     name: "reda babas",
-    userId: "e9a241ba-f8d4-46c3-88f9-c72635dd6458",
+    userId: "e22bf006-e2e7-4420-95e5-43ca6df85051",
     teamIds: [llamasId],
   },
   {
     name: "thomas riggi",
-    userId: "aeed3d56-4ab9-40ed-bb02-6019bcb227cf",
+    userId: "9f3500ee-2753-478f-880c-b24580200903",
     teamIds: [doubleId, llamasId],
   },
 ];
@@ -349,10 +349,10 @@ async function seed() {
   //   .then(async () => await prisma.userTeam.deleteMany())
   //   .then(async () => await prisma.team.deleteMany())
   //   .then(async () => await prisma.user.deleteMany());
-  await prisma.game.deleteMany().then(() => createGames());
+  // await prisma.game.deleteMany().then(() => createGames());
   // createPlayersAndTeams();
-  // createPlayerTeamAssociations();
-  // createGames();
+  createPlayerTeamAssociations();
+  createGames();
 }
 
 seed()

@@ -13,7 +13,6 @@ function Team() {
   const dispatch = useDispatch();
   const { teamId } = useParams();
   const team = useSelector((state) => state.team);
-  console.log("team component team", team);
 
   const finalRoster = useMemo(() => {
     const teamDup = team.UserTeam ? [...team.UserTeam] : [];
@@ -27,6 +26,7 @@ function Team() {
             lastName: curr.User.lastName,
             email: curr.User.email,
             phoneNumber: curr.User.phoneNumber,
+            isCaptain: curr.isCaptain,
           },
         ]),
       []
@@ -62,7 +62,20 @@ function Team() {
       }, 0),
     [team.Games]
   );
-  console.log("games won", gamesWon);
+  const gamesTied = useMemo(
+    () =>
+      team.Games?.reduce((acc, curr) => {
+        return (acc += curr.result === "tie");
+      }, 0),
+    [team.Games]
+  );
+  const gamesLost = useMemo(
+    () =>
+      team.Games?.reduce((acc, curr) => {
+        return (acc += curr.result === "loss");
+      }, 0),
+    [team.Games]
+  );
 
   const goalsAgainst = useMemo(
     () =>
@@ -78,7 +91,7 @@ function Team() {
   return (
     <div className="flex flex-col items-start w-full px-4">
       <div className="flex justify-center w-full">
-        <h2 className="text-2xl my-4">{team.name}</h2>
+        <h2 className="text-2xl my-4">TEAM: {team.name?.toUpperCase()}</h2>
       </div>
       <div className="my-4 w-full">
         <h3 className="text-xl">ROSTER</h3>
@@ -92,7 +105,7 @@ function Team() {
             {team &&
               finalRoster.map((player) => (
                 <tr key={player.id}>
-                  <td className="border border-b-gray-400">
+                  <td className="border border-b-gray-400 indent-1">
                     <Player player={player} />
                   </td>
                 </tr>
@@ -191,10 +204,17 @@ function Team() {
         </div>
         <div className="my-4">
           <h3 className="text-xl my-2">STATS</h3>
-          <h3>Record: </h3>
-          <h3>Goals Scored: {goalsScored}</h3>
-          <h3>Goals Against: {goalsAgainst}</h3>
-          <h3>Goals Allowed Per Game: {goalsAgainst / pastGames?.length}</h3>
+          <div className="bg-white shadow-md">
+            <h3 className="px-1">
+              Record: {`${gamesWon}-${gamesTied}-${gamesLost}`}
+            </h3>
+            <h3 className="bg-[#EFEEF0] px-1">Goals Scored: {goalsScored}</h3>
+            <h3 className="px-1">Goals Against: {goalsAgainst}</h3>
+            <h3 className="bg-[#EFEEF0] px-1">
+              Goals Allowed Per Game:{" "}
+              {(goalsAgainst / pastGames?.length).toFixed(2)}
+            </h3>
+          </div>
         </div>
       </div>
     </div>

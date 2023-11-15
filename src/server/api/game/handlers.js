@@ -35,4 +35,25 @@ async function createGame(req, res, next) {
   }
 }
 
-module.exports = { createGame };
+async function updateGame(req, res, next) {
+  const { selectedGame, ourGoals, opponentGoals, result, completed } = req.body;
+  try {
+    const updated = await prisma.game.update({
+      where: {
+        id: selectedGame,
+      },
+      data: {
+        ourGoals,
+        opponentGoals,
+        result,
+        completed,
+      },
+    });
+    res.status(200).send(updated);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+}
+
+module.exports = { createGame, updateGame };

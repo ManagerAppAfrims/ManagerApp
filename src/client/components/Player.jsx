@@ -7,8 +7,10 @@ function Player({ player }) {
   return (
     <div>
       <button onClick={() => setModalOpen(true)}>
-        <h2 className="my-4 w-full">
-          {`${player.firstName} ${player.lastName}`}
+        <h2 className="my-4 w-full text-blue-700">
+          {`${player.firstName} ${player.lastName} ${
+            player.isCaptain ? "⭐️" : ""
+          }`}
         </h2>
       </button>
       <>

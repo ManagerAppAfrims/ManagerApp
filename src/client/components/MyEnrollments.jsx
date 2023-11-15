@@ -27,7 +27,7 @@ function MyEnrollments({ teams }) {
             className="flex flex-col gap-4 w-full border-b-[2px] border-gray-400 bg-white shadow-md mb-6"
           >
             <div className="w-full p-3">
-              <Link to={`/team/${team.teamId}`}>
+              <Link to={`/team/${team.teamId}`} className="text-blue-700">
                 <h3>{team.name.toUpperCase()}</h3>
               </Link>
               <h3>2023-2024 Winter 1 (Nov-Dec) Adult Leagues</h3>

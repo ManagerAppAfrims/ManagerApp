@@ -17,7 +17,11 @@ async function createTeam(req, res, next) {
 
 async function getAllTeams(req, res, next) {
   try {
-    const teams = await prisma.team.findMany();
+    const teams = await prisma.team.findMany({
+      include: {
+        Games: true,
+      },
+    });
     res.status(200).send(teams);
   } catch (error) {
     console.error(error);

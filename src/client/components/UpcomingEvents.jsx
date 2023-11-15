@@ -3,9 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import { AiOutlineHome } from "react-icons/ai";
 import { TbCircleLetterA } from "react-icons/tb";
 import { convertMilitaryTime, convertDay, gameCount } from "../utils";
+import { Link } from "react-router-dom";
 function UpcomingEvents({ teams }) {
   const remainingGames = teams.map((team) => {
     return {
+      teamId: team.Team.id,
       name: team.Team.name,
       games: team.Team.Games.filter((game) => !game.completed),
     };
@@ -26,9 +28,16 @@ function UpcomingEvents({ teams }) {
                     <div className="flex flex-col">
                       <div className="flex items-center">
                         <TbCircleLetterA />
-                        {team.games[0].home
-                          ? team.games[0].opponent
-                          : team.name}
+                        {team.games[0].home ? (
+                          team.games[0].opponent
+                        ) : (
+                          <Link
+                            to={`/team/${team.teamId}`}
+                            className="text-blue-700"
+                          >
+                            {team.name}
+                          </Link>
+                        )}
                       </div>
                       <h3 className="ml-4">vs</h3>
                       <div className="flex items-center">

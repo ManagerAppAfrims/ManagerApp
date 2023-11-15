@@ -14,15 +14,6 @@ function UpdateGameModal({ showUpdateGame, setShowUpdateGame }) {
   const [result, setResult] = useState("");
   const [completed, setCompleted] = useState(false);
   const teams = useSelector((state) => state.teams);
-  console.log({
-    selectedTeam,
-    selectedGame,
-    ourGoals,
-    opponentGoals,
-    result,
-    completed,
-  });
-  console.log("teams", teams);
 
   const games = selectedTeam
     ? teams.filter((team) => team.id === selectedTeam)[0].Games
